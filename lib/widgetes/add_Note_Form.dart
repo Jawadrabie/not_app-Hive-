@@ -30,6 +30,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           right: 10,
           left: 10,
           bottom: MediaQuery.of(context).viewInsets.bottom,
+          // من اجل الكيبورد
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -71,7 +72,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
 
                       var currentDate = DateTime.now(); //pakage intl
                       var formattedCurentDate =
-                          DateFormat("dd-mm-yyyy").format(currentDate);
+                          DateFormat.yMd().format(currentDate);
 
                       NoteModel notesModel = NoteModel(
                         title: title!,
@@ -80,7 +81,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         // color: BlocProvider.of<AddNoteCubit>(context).color!.value,
                         date: formattedCurentDate,
                       );
-                      BlocProvider.of<AddNoteCubit>(context).addNote(notesModel);
+                      BlocProvider.of<AddNoteCubit>(context)
+                          .addNote(notesModel);
                     } else {
                       setState(() {
                         autovalidateMode = AutovalidateMode.always;
@@ -99,5 +101,3 @@ class _AddNoteFormState extends State<AddNoteForm> {
     );
   }
 }
-
-
